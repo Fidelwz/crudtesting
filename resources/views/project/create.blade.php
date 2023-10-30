@@ -1,53 +1,136 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form class="w-full max-w-lg" action="{{route('project.store')}}" method="POST">
-                        @csrf
-                        <div class="flex flex-wrap -mx-3 mb-6">
-                          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label class="block uppercase tracking-wide text-white-700 text-xs font-bold mb-2" for="grid-first-name">
-                              Nombre del proyecto
-                            </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" name="projectName" id="grid-first-name" type="text" placeholder="Jane">
-                            <p class="text-red-500 text-xs italic">Fuente de fondos</p>
-                          </div>
-                          <div class="w-full md:w-1/2 px-3">
-                            <label class="block uppercase tracking-wide text-white-700 text-xs font-bold mb-2" for="grid-last-name">
-                             Fuente de fondos
-                            </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="sourceOfFunds" id="grid-last-name" type="text" placeholder="Doe">
-                          </div>
-                        </div>
-                        <div class="flex flex-wrap -mx-3 mb-6">
-                            <div class=" w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-white-700 text-xs font-bold mb-2" for="grid-zip">
-                                  Monto planificado
-                                </label>
-                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  name="plannedAmount" id="grid-zip" type="number" min="0" value="0" step=".01"  placeholder="90210">
-                              </div>
-                        </div>
-                        <div class="flex flex-wrap -mx-3 mb-2">
-                          <div class=" w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label class="block uppercase tracking-wide text-white-700 text-xs font-bold mb-2" for="grid-zip">
-                             Monto patrocinado
-                            </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  name="sponsoredAmount" id="grid-zip" type="number"  min="0" value="0" step=".01" placeholder="90210">
-                          </div>
-                        </div>
-                        <div class="flex flex-wrap -mx-3 mb-2">
-                            <div class=" w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                              <label class="block uppercase tracking-wide text-white-700 text-xs font-bold mb-2" for="grid-zip">
-                                Monto fondos propios
-                              </label>
-                              <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="amountOwnFunds" id="grid-zip" type="number"  min="0" value="0" step=".01" placeholder="90210">
-                            </div>
-                          </div>
-                          <button type="submit">Guardar</button>
-                      </form>
+  <style>
+    .animated {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+
+    .animated.faster {
+        -webkit-animation-duration: 500ms;
+        animation-duration: 500ms;
+    }
+
+    .fadeIn {
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+    }
+
+    .fadeOut {
+        -webkit-animation-name: fadeOut;
+        animation-name: fadeOut;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+</style>
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100  flex justify-center">
+          <form action="{{route('project.store')}}" method="POST">
+            @csrf
+            <div class="space-y-12 dark:text-white">
+
+
+              <div class="border-b border-gray-900/10 pb-12 dark:border-gray-700 ">
+                <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Informacion del proyecto
+                </h2>
+                <p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Ingrese correctamente la informacion
+                  que se solicita</p>
+
+                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div class="sm:col-span-3">
+                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900  dark:text-white">
+                      Nombre del proyecto</label>
+                    <div class="mt-2">
+                      <input required type="text" name="projectName" id="first-name" autocomplete="given-name"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                  </div>
+
+                  <div class="sm:col-span-3">
+                    <label for="last-name"
+                      class="block text-sm font-medium leading-6 text-gray-900  dark:text-white">Fuente de
+                      fondos</label>
+                    <div class="mt-2">
+                      <input required type="text" name="sourceOfFunds" id="last-name" autocomplete="family-name"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                  </div>
+
+
+                  <div class="sm:col-span-3">
+                    <label for="street-address"
+                      class="block text-sm font-medium leading-6 text-gray-900  dark:text-white">Monto
+                      planificado $</label>
+                    <div class="mt-2">
+                      <input required type="number" min="0" step=".01" name="plannedAmount" id="street-address"
+                        autocomplete="street-address"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                  </div>
+
+                  <div class="sm:col-span-3">
+                    <label for="street-address"
+                      class="block text-sm font-medium leading-6 text-gray-900  dark:text-white">Monto
+                      patrocinado $</label>
+                    <div class="mt-2">
+                      <input required type="number" min="0" step=".01" name="sponsoredAmount" id="street-address"
+                        autocomplete="street-address"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                  </div>
+
+                  <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="city" class="block text-sm font-medium leading-6 text-gray-900  dark:text-white">Monto
+                      fondos propios $</label>
+                    <div class="mt-2">
+                      <input required type="number" min="0" step=".01" name="amountOwnFunds" id="city"
+                        autocomplete="address-level2"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+
+
+            <div class="mt-6 flex items-center justify-end gap-x-6">
+              <button type="submit"
+                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guardar</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+
+
+ 
+
+
+
+
+
+
+
 </x-app-layout>

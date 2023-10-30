@@ -15,11 +15,11 @@ use App\Http\Controllers\projectsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/projects/edit/{id}', [projectsController::class, 'edit'])->name('project.edit');
     Route::post('/projects/update/{id}', [projectsController::class, 'update'])->name('project.update');
     Route::post('/projects/delete/{id}', [projectsController::class, 'delete'])->name('project.delete');
-    Route::get('/report', [projectsController::class, 'report'])->name('project.report');
+    Route::get('/report/{id}', [projectsController::class, 'report'])->name('project.report');
+    Route::get('/inform', [projectsController::class, 'inform'])->name('project.inform');
 
 });
 
