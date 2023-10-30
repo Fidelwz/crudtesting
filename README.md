@@ -9,9 +9,25 @@
 
 ## About project
 
+
+``` bash
+#!/bin/bash
+ftp_server="ftp.box.com"
+
+# Box account email address
+ftp_user="login@example.com"
+# Box account external password
+ftp_pass="external_password"
+
+# Base directory for all transfers
+ftp_path="temp"
+# Upload directory can be specified at run
+ftp_dir=""
 Crud project  
 run newx comands:
-$ composer update
+$ composer update.
 $ cp .env.example .env
 $ php artisan migrate
 $ php artisan serve
+
+```
