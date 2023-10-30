@@ -10,7 +10,7 @@
 ## About project
 
 Crud project.
-run newx comands:
+run next commands:
 ``` bash
 $ composer update.
 $ cp .env.example .env
