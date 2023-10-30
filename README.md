@@ -12,7 +12,7 @@
 Crud project.
 run next commands:
 ``` bash
-$ composer update.
+$ composer update
 $ cp .env.example .env
 $ php artisan migrate
 $ php artisan serve
